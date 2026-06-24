@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>九游 · 空间游戏指南</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #f2f4f6;
+      color: #1e2b3a;
+      line-height: 1.7;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 960px;
+      width: 100%;
+    }
+
+    /* 开场短句 — 像一篇文章的引子 */
+    .hero-note {
+      font-size: 1.5rem;
+      font-weight: 350;
+      letter-spacing: 0.01em;
+      padding: 2.5rem 2rem 1.8rem;
+      background: #ffffff;
+      border-radius: 28px 28px 28px 28px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02), 0 8px 20px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e5e9ed;
+      margin-bottom: 2.2rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .hero-note p {
+      max-width: 80%;
+    }
+
+    .hero-note strong {
+      font-weight: 500;
+      color: #1f3a4b;
+    }
+
+    .hero-note .accent-line {
+      display: block;
+      margin-top: 0.8rem;
+      font-size: 1rem;
+      color: #4c6475;
+      border-left: 3px solid #7f9aab;
+      padding-left: 1rem;
+    }
+
+    /* 承接段落 — 解释“我们是谁” */
+    .context-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2.2rem 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e2e7ec;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .context-card h2 {
+      font-size: 1.5rem;
+      font-weight: 450;
+      margin-bottom: 1rem;
+      color: #1f3848;
+      letter-spacing: -0.01em;
+    }
+
+    .context-card p {
+      margin-bottom: 1.1rem;
+    }
+
+    /* 特点列表 — 用卡片式网格 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+      margin: 2.2rem 0 2.8rem;
+    }
+
+    .feature-item {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.8rem 1.6rem 1.8rem;
+      border: 1px solid #e0e5ea;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+      transition: border 0.15s, box-shadow 0.2s;
+    }
+
+    .feature-item:hover {
+      border-color: #b5cadb;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+    }
+
+    .feature-item .num {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: #e9eef3;
+      padding: 0.15rem 0.7rem;
+      border-radius: 30px;
+      color: #2a4b60;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.8rem;
+    }
+
+    .feature-item h3 {
+      font-weight: 450;
+      font-size: 1.2rem;
+      margin-bottom: 0.7rem;
+      color: #1a3344;
+    }
+
+    .feature-item p {
+      font-size: 0.95rem;
+      color: #345265;
+    }
+
+    /* 温和结尾 — 段落内嵌链接 */
+    .closing-section {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2rem 2.2rem 2.2rem;
+      border: 1px solid #e3e8ed;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+      margin-top: 0.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .closing-section p {
+      margin-bottom: 1.2rem;
+    }
+
+    .closing-section a {
+      color: #1d5b7a;
+      text-decoration: none;
+      border-bottom: 1px solid #bacee0;
+      transition: border-color 0.15s, color 0.15s;
+      font-weight: 450;
+    }
+
+    .closing-section a:hover {
+      border-bottom-color: #1d5b7a;
+      color: #0b3850;
+    }
+
+    .foot-note {
+      display: block;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #5e7586;
+      border-top: 1px solid #e1e7ed;
+      padding-top: 1.2rem;
+    }
+
+    /* 通用响应式 */
+    @media (max-width: 580px) {
+      body {
+        padding: 1.2rem 1rem;
+      }
+      .hero-note {
+        padding: 1.8rem 1.5rem;
+        font-size: 1.3rem;
+      }
+      .hero-note p {
+        max-width: 100%;
+      }
+      .context-card {
+        padding: 1.8rem 1.3rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .closing-section {
+        padding: 1.8rem 1.3rem;
+      }
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #d7dee5, transparent);
+      margin: 1.2rem 0 1.8rem;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 开场短句 —— 快速告诉用户这个网站是什么 -->
+  <div class="hero-note">
+    <p>你正在寻找一个命名直接、用途清晰的空间？<br>
+    <strong>九游</strong> 是一个面向游戏爱好者的内容聚合平台，站点名称本身就是它的坐标。</p>
+    <span class="accent-line">从名字开始，减少检索步骤 —— 让玩家更快定位到目的地。</span>
+  </div>
+
+  <!-- 承接段落：解释网站性质 + 第一层介绍 -->
+  <div class="context-card">
+    <h2>一眼识别 · 站点用途</h2>
+    <p>许多游戏相关网站使用抽象或创意命名，用户往往需要多次点击或阅读简介才能确定其功能。<strong>九游</strong> 在命名上采用了更直接的路线：名称中的“九”带有完整、多样的暗示，“游”则明确指向游戏领域。这种组合让新访客在几秒内就能判断该网站是否与自己的兴趣相关。</p>
+    <p>从结构来看，<strong>九游</strong> 更倾向于扮演信息枢纽的角色 —— 汇集游戏资讯、测评摘要、社区动态以及部分娱乐内容。它不把自己定位成单一游戏的门户，而是尝试覆盖更宽泛的游戏文化话题。</p>
+  </div>
+
+  <!-- 特点列表：卡片式，三个特征 -->
+  <div class="feature-grid">
+    <div class="feature-item">
+      <span class="num">01</span>
+      <h3>名称即线索</h3>
+      <p>「九游」二字直接点明领域，用户无需额外解码。这种命名策略降低了认知负担，让首次访问者快速建立心理预期。</p>
+    </div>
+    <div class="feature-item">
+      <span class="num">02</span>
+      <h3>内容覆盖面</h3>
+      <p>不局限于某一类型或某款热门游戏，而是从独立游戏到主流作品，兼顾新闻、评测、玩家讨论等多层次内容。</p>
+    </div>
+    <div class="feature-item">
+      <span class="num">03</span>
+      <h3>浏览节奏友好</h3>
+      <p>页面采用分区与卡片式布局，信息层级清晰。适合快速扫读，也适合深度阅读 —— 由用户自行选择节奏。</p>
+    </div>
+  </div>
+
+  <!-- 温和结尾 — 嵌入了不可分割的链接文本“九游” -->
+  <div class="closing-section">
+    <p>如果你希望直接了解网站的全貌，可以前往 <a href="https://space-ninegames.com.cn">九游</a> 浏览当前内容结构。该站点仍在持续调整中，不同时期的侧重点可能会有所变化，但核心方向始终围绕游戏内容的整理与呈现。</p>
+    <p>对普通访客而言，判断一个网站是否值得收藏，往往取决于它能否在短时间内提供有价值的信息预览。九游 在首页布局中试图做到这一点：让分类导航、近期更新和精选内容同时可见，减少点击层级。</p>
+    <span class="foot-note">无论你是偶然路过还是专程查找，都希望你能在这里找到合意的游戏信息片段。</span>
+  </div>
+
+  <!-- 细装饰线 -->
+  <hr>
+
+  <!-- 附加一行简洁的说明 —— 使其更像一个完整的独立页（非必要但丰富） -->
+  <div style="font-size: 0.85rem; color: #6c8395; text-align: center; padding: 0.2rem 0 1.2rem; letter-spacing: 0.02em;">
+    <span>内容索引 · 基于公开信息整理</span>
+  </div>
+
+</div>
+</body>
+</html>
